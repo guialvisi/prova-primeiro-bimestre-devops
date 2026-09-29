@@ -32,4 +32,6 @@ logs/
 Thumbs.db
 
 # VS Code
-.vscode/
+.vscode/*.swp
+*.swo
+*~
