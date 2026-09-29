@@ -2,13 +2,18 @@ services:
   db:
     image: postgres:17-alpine
     environment:
-      POSTGRES_DB: reservas_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - technova-network
+
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d reservas_db"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -16,18 +21,25 @@ services:
   api:
     build:
       context: ./app
+
     ports:
-      - "3000:3000"
+      - "${API_PORT}:3000"
+
     environment:
       PORT: 3000
       DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-      DB_NAME: reservas_db
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+
+    networks:
+      - technova-network
+
     depends_on:
       db:
         condition: service_healthy
+
     healthcheck:
       test:
         [
@@ -42,3 +54,7 @@ services:
 
 volumes:
   postgres_data:
+
+networks:
+  technova-network:
+    driver: bridge
