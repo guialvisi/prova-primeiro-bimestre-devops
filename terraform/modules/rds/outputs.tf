@@ -1,20 +1,19 @@
-output "endpoint" {
-  description = "Endpoint do PostgreSQL RDS"
+output "rds_endpoint" {
+  description = "Endpoint do banco PostgreSQL RDS"
   value       = aws_db_instance.postgres.address
 }
 
-output "port" {
+output "rds_port" {
   description = "Porta do PostgreSQL"
   value       = aws_db_instance.postgres.port
 }
 
-output "db_name" {
-  description = "Nome do banco"
-  value       = aws_db_instance.postgres.db_name
-}
-
-output "db_instance_id" {
+output "rds_id" {
   description = "ID da instancia RDS"
   value       = aws_db_instance.postgres.id
 }
 
+output "rds_arn" {
+  description = "ARN da instancia RDS"
+  value       = aws_db_instance.postgres.arn
+}

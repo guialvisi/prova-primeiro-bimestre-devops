@@ -3,22 +3,18 @@ variable "project_name" {
   type        = string
 }
 
-variable "public_subnet_id" {
-  description = "Subnet publica onde a EC2 sera criada"
+variable "subnet_id" {
+  description = "ID da subnet publica onde a EC2 sera criada"
   type        = string
 }
 
-variable "ec2_security_group_id" {
-  description = "Security Group da EC2"
+variable "security_group_id" {
+  description = "ID do Security Group associado a EC2"
   type        = string
 }
 
-variable "ami_id" {
-  description = "AMI utilizada pela EC2"
-  type        = string
-}
 variable "db_host" {
-  description = "Endpoint do RDS"
+  description = "Endpoint do RDS PostgreSQL"
   type        = string
 }
 
@@ -28,16 +24,12 @@ variable "db_name" {
 }
 
 variable "db_username" {
-  description = "Usuario do PostgreSQL"
+  description = "Usuario do banco PostgreSQL"
   type        = string
 }
 
 variable "db_password" {
-  description = "Senha do PostgreSQL"
+  description = "Senha do banco PostgreSQL"
   type        = string
   sensitive   = true
-}
-variable "github_repository" {
-  description = "URL HTTPS do repositorio GitHub"
-  type        = string
 }
