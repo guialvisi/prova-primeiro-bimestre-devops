@@ -1,0 +1,5 @@
+module.ec2.data.aws_ami.amazon_linux: Reading...
+module.vpc.aws_vpc.main: Refreshing state... [id=vpc-022716c741f945a5b]
+
+Planning failed. Terraform encountered an error while generating this plan.
+
